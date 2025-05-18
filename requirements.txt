@@ -6,7 +6,7 @@ tzdata==2025.2
 
 # Additional useful packages
 django-crispy-forms==2.1
-django-filter==23.6
+django-filter==21.1
 python-dateutil==2.8.2
 Pillow==10.2.0
 
