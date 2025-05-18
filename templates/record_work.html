@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+    {{ manual_form.media }}
+    {{ clock_form.media }}
+    {{ time_range_form.media }}
+{% endblock %}
+
+
+{% block title %}Record Work{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Manual Hours Entry -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Manual Hours Entry</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="entry_type" value="manual">
+                    {% if manual_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ manual_form.non_field_errors }}</div>
+                    {% endif %}
+                    {{ manual_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Record Hours</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clock In/Out -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Clock In/Out</h3>
+            </div>
+            <div class="card-body">
+                 {% if active_session %}
+                <div class="alert alert-info">
+                    <h5>Currently Clocked In</h5>
+                    <p>Task: {{ active_session.task }}</p>
+                    <p>Started: {{ active_session.clock_in|date:"F j, Y, g:i A" }}</p>
+                    <p>Duration: {{ active_session.calculated_hours|floatformat:2 }} hours</p>
+                    <form method="post" action="{% url 'clock_out' active_session.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" class="btn btn-warning">Clock Out</button>
+                    </form>
+                </div>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="entry_type" value="clock">
+                    {% if clock_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ clock_form.non_field_errors }}</div>
+                    {% endif %}
+                    {{ clock_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Clock In</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Time Range Entry -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Time Range Entry</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="entry_type" value="time_range">
+                    {% if time_range_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ time_range_form.non_field_errors }}</div>
+                    {% endif %}
+                    {{ time_range_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Record Hours</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modernized Work Sessions Card/Table -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+          <h4 class="mb-0 flex-grow-1">Recent Work Sessions</h4>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Task</th>
+                  <th>Student</th>
+                  <th>Entry Type</th>
+                  <th>Hours</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for session in completed_sessions|dictsortreversed:"created_at" %}
+                <tr>
+                  <td>{{ session.created_at|date:"Y-m-d H:i" }}</td>
+                  <td>{{ session.task }}</td>
+                  <td>{{ session.student }}</td>
+                  <td><span class="badge bg-info text-dark">{{ session.entry_type }}</span></td>
+                  <td>{{ session.calculated_hours }}</td>
+                  <td>{{ session.notes|default:"" }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6" class="text-center">No recent work sessions.</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+body {
+  background-color: #F4F6F8;
+  font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+}
+.card {
+  border-radius: 10px;
+}
+.card-header {
+  border-bottom: none;
+}
+.table th, .table td {
+  vertical-align: middle;
+}
+</style>
+
+<script>
+    // DAL-related code removed as django-autocomplete-light is no longer used
+</script>
+{% endblock %}
