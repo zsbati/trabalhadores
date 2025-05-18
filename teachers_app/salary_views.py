@@ -106,7 +106,7 @@ def create_salary_report(request):
             report_data = SalaryCalculationService.calculate_salary(teacher, year, month)
             
             # Since we're always creating a new report, we don't need to check if it was created
-            message = f'Salary report created for {teacher.user.username} - {report_data["period"]}'
+            message = f'Relatório de salário criado para {teacher.user.username} - {report_data["period"]}'
             messages.success(request, message)
             
             return redirect('view_salary_report', teacher_id=teacher.id, year=year, month=month)

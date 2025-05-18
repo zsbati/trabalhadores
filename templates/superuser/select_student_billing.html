@@ -10,7 +10,7 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="student_id" class="form-label">Selecionar Cliente</label>
-                    <select name="student_id" id="student_id" class="form-select">
+                    <select name="student_id" id="student_id" class="form-select select2" data-placeholder="Selecione um cliente...">
                         <option value="">Selecione um cliente...</option>
                         {% for student in students %}
                         <option value="{{ student.id }}">

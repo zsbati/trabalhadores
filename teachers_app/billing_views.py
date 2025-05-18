@@ -64,7 +64,7 @@ def create_bill(request, student_id):
             )['total']
             bill.save()
 
-            messages.success(request, f'Service added to bill. Total amount: ${bill.total_amount}')
+            messages.success(request, f'Serviço adicionado à fatura. Total: €{bill.total_amount:.2f}')
             return redirect('create_bill', student_id=student_id)
     elif request.method == 'GET' and 'action' in request.GET and request.GET['action'] == 'create':
         # Handle bill creation
@@ -91,7 +91,7 @@ def create_bill(request, student_id):
         bill.total_amount = bill_items_total + work_sessions_total
         bill.save()
 
-        messages.success(request, f'Fatura criada com sucesso para {student} for {selected_month.strftime("%B %Y")}!')
+        messages.success(request, f'Fatura criada com sucesso para {student} para {selected_month.year} - {selected_month.strftime("%B")}!')
         return redirect('student_bills', student_id=student_id)
     else:
         form = BillItemForm()
@@ -131,7 +131,20 @@ def create_bill(request, student_id):
     bill_items = bill.items.all() if bill else []
 
     # Prepare months and years for dropdowns
-    months = [{'value': i, 'name': calendar.month_name[i]} for i in range(1, 13)]
+    months = [
+        {'value': 1, 'name': 'Janeiro'},
+        {'value': 2, 'name': 'Fevereiro'},
+        {'value': 3, 'name': 'Março'},
+        {'value': 4, 'name': 'Abril'},
+        {'value': 5, 'name': 'Maio'},
+        {'value': 6, 'name': 'Junho'},
+        {'value': 7, 'name': 'Julho'},
+        {'value': 8, 'name': 'Agosto'},
+        {'value': 9, 'name': 'Setembro'},
+        {'value': 10, 'name': 'Outubro'},
+        {'value': 11, 'name': 'Novembro'},
+        {'value': 12, 'name': 'Dezembro'}
+    ]
     years = list(range(selected_month.year - 5, selected_month.year + 2))  # Last 5 years to next year
 
     context = {
@@ -382,7 +395,20 @@ def charge_student_for_service(request):
     now = timezone.now()
     students = Student.objects.all()
     services = Service.objects.filter(is_active=True)
-    months = [{'value': i, 'name': calendar.month_name[i]} for i in range(1, 13)]
+    months = [
+        {'value': 1, 'name': 'Janeiro'},
+        {'value': 2, 'name': 'Fevereiro'},
+        {'value': 3, 'name': 'Março'},
+        {'value': 4, 'name': 'Abril'},
+        {'value': 5, 'name': 'Maio'},
+        {'value': 6, 'name': 'Junho'},
+        {'value': 7, 'name': 'Julho'},
+        {'value': 8, 'name': 'Agosto'},
+        {'value': 9, 'name': 'Setembro'},
+        {'value': 10, 'name': 'Outubro'},
+        {'value': 11, 'name': 'Novembro'},
+        {'value': 12, 'name': 'Dezembro'}
+    ]
     years = list(range(now.year - 5, now.year + 2))
 
     # No default for student/service; default for month/year only
@@ -409,7 +435,7 @@ def charge_student_for_service(request):
         )
         bill.total_amount = bill.items.aggregate(total=Sum('amount'))['total'] or 0
         bill.save()
-        messages.success(request, f'Added {service.name} to {student} for {calendar.month_name[selected_month]} {selected_year}.')
+        messages.success(request, f'Adicionado {service.name} ao {student} para {selected_month.strftime("%B")} {selected_year}.')
         return redirect('charge_student_for_service')
 
     context = {

@@ -159,7 +159,7 @@ def manage_teachers(request):
                 user=user,
                 subjects=form.cleaned_data['subjects']
             )
-            messages.success(request, f'Teacher {user.username} was successfully added!')
+            messages.success(request, f'Trabalhador {user.username} foi adicionado com sucesso!')
             return redirect('manage_teachers')
         else:
             messages.error(request, 'Please correct the errors below.')
@@ -210,7 +210,7 @@ def manage_tasks(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save()
-            messages.success(request, f'Task "{task.name}" was successfully added!')
+            messages.success(request, f'Tarefa "{task.name}" foi adicionado com sucesso!')
             return redirect('manage_tasks')
         else:
             messages.error(request, 'Please correct the errors below.')
@@ -441,7 +441,7 @@ def manage_tasks(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save()
-            messages.success(request, f'Task "{task.name}" was successfully added!')
+            messages.success(request, f'Tarefa "{task.name}" foi adicionado com sucesso!')
             return redirect('manage_tasks')
         else:
             messages.error(request, 'Please correct the errors below.')
@@ -478,7 +478,7 @@ def add_teacher(request):
                 user=user,
                 subjects=form.cleaned_data['subjects']
             )
-            messages.success(request, f'Teacher {user.username} was successfully added!')
+            messages.success(request, f'Trabalhador {user.username} foi adicionado com sucesso!')
             return redirect('manage_teachers')
     else:
         form = TeacherCreationForm()
@@ -498,7 +498,7 @@ def remove_teacher(request, teacher_id):
         teacher.delete()
         try:
             user.delete()
-            messages.success(request, f'Teacher {user.username} has been successfully removed.')
+            messages.success(request, f'Trabalhador {user.username} foi removido com sucesso.')
         except Exception as ue:
             logger.error(f"Error deleting user instance for teacher {teacher_id}: {ue}")
             messages.error(request, f'Error deleting user instance: {ue}')
@@ -536,7 +536,7 @@ def remove_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':
         task.delete()
-        messages.success(request, 'Task was successfully removed!')
+        messages.success(request, 'Tarefa foi removida com sucesso!')
         return redirect('manage_tasks')
     return render(request, 'superuser/confirm_task_removal.html', {'task': task})
 
@@ -570,7 +570,7 @@ def record_work(request, teacher_id=None):
                 from .billing_services import StudentBillingService
                 if work_session.student:
                     StudentBillingService.create_bill_item_for_work_session(work_session)
-                messages.success(request, f'Work hours recorded successfully for {teacher.user.username}!')
+                messages.success(request, f'Horas de trabalho registradas com sucesso para {teacher.user.username}!')
                 return redirect('record_work_with_teacher', teacher_id=teacher.id)
         elif entry_type == 'clock':
             clock_form = WorkSessionClockForm(request.POST)
@@ -583,7 +583,7 @@ def record_work(request, teacher_id=None):
                 from .billing_services import StudentBillingService
                 if work_session.student:
                     StudentBillingService.create_bill_item_for_work_session(work_session)
-                messages.success(request, f'Clock-in recorded successfully for {teacher.user.username}!')
+                messages.success(request, f'Ponto de entrada registrado com sucesso para {teacher.user.username}!')
                 return redirect('record_work_with_teacher', teacher_id=teacher.id)
         elif entry_type == 'time_range':
             time_range_form = WorkSessionTimeRangeForm(request.POST)
@@ -595,8 +595,7 @@ def record_work(request, teacher_id=None):
                 from .billing_services import StudentBillingService
                 if work_session.student:
                     StudentBillingService.create_bill_item_for_work_session(work_session)
-                messages.success(request,
-                                 f'Work hours recorded successfully with a time range for {teacher.user.username}!')
+                messages.success(request, f'Horas de trabalho registradas com sucesso com período de tempo para {teacher.user.username}!')
                 return redirect('record_work_with_teacher', teacher_id=teacher.id)
 
     # Get the active session for the teacher
@@ -651,7 +650,7 @@ def clock_out(request, session_id):
         if session.student:
             StudentBillingService.create_bill_item_for_work_session(session)
         
-        messages.success(request, 'Clocked out successfully!')
+        messages.success(request, 'Ponto de saída registrado com sucesso!')
         
         # Redirect back to the page we came from
         next_url = request.GET.get('next') or request.POST.get('next')

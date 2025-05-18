@@ -8,9 +8,18 @@
               <div class="col-auto">
                 <label for="month" class="form-label">Mês:</label>
                 <select name="month" id="month" class="form-select">
-                  {% for m in months %}
-                    <option value="{{ m.value }}" {% if m.value == selected_month.month %}selected{% endif %}>{{ m.name }}</option>
-                  {% endfor %}
+                  <option value="1" {% if selected_month.month == 1 %}selected{% endif %}>Janeiro</option>
+                  <option value="2" {% if selected_month.month == 2 %}selected{% endif %}>Fevereiro</option>
+                  <option value="3" {% if selected_month.month == 3 %}selected{% endif %}>Março</option>
+                  <option value="4" {% if selected_month.month == 4 %}selected{% endif %}>Abril</option>
+                  <option value="5" {% if selected_month.month == 5 %}selected{% endif %}>Maio</option>
+                  <option value="6" {% if selected_month.month == 6 %}selected{% endif %}>Junho</option>
+                  <option value="7" {% if selected_month.month == 7 %}selected{% endif %}>Julho</option>
+                  <option value="8" {% if selected_month.month == 8 %}selected{% endif %}>Agosto</option>
+                  <option value="9" {% if selected_month.month == 9 %}selected{% endif %}>Setembro</option>
+                  <option value="10" {% if selected_month.month == 10 %}selected{% endif %}>Outubro</option>
+                  <option value="11" {% if selected_month.month == 11 %}selected{% endif %}>Novembro</option>
+                  <option value="12" {% if selected_month.month == 12 %}selected{% endif %}>Dezembro</option>
                 </select>
               </div>
               <div class="col-auto">
@@ -25,7 +34,7 @@
                 <button type="submit" class="btn btn-primary">Ir</button>
               </div>
             </form>
-            <p class="text-muted">Mês de Faturação: {{ selected_month.year }} - {{ selected_month|date:"F" }}</p>
+            <p class="text-muted">Mês de Faturação: {{ selected_month.year }} - {% if selected_month.month == 1 %}Janeiro{% elif selected_month.month == 2 %}Fevereiro{% elif selected_month.month == 3 %}Março{% elif selected_month.month == 4 %}Abril{% elif selected_month.month == 5 %}Maio{% elif selected_month.month == 6 %}Junho{% elif selected_month.month == 7 %}Julho{% elif selected_month.month == 8 %}Agosto{% elif selected_month.month == 9 %}Setembro{% elif selected_month.month == 10 %}Outubro{% elif selected_month.month == 11 %}Novembro{% else %}Dezembro{% endif %}</p>
         </div>
         <div class="card-body">
             <div class="row mb-4">
@@ -128,7 +137,7 @@
                                 {% if work_sessions %}
                                 {% for session in work_sessions %}
                                 <tr>
-                                    <td>{{ session.start_time|date:"Y-m-d H:i" }}</td>
+                                    <td>{{ session.created_at|date:"j/n/Y" }}</td>
                                     <td>Sessão de Trabalho</td>
                                     <td>{{ session.task.name }}</td>
                                     <td>{{ session.task.description|default:'-' }}</td>

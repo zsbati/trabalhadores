@@ -19,13 +19,13 @@ def add_service(request):
         form = ServiceForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Service added successfully')
+            messages.success(request, 'Serviço adicionado com sucesso')
             return redirect('manage_services')
     else:
         form = ServiceForm()
     return render(request, 'superuser/service_form.html', {
         'form': form,
-        'title': 'Add Service'
+        'title': 'Adicionar Serviço'
     })
 
 @login_required
@@ -37,13 +37,13 @@ def edit_service(request, service_id):
         form = ServiceForm(request.POST, instance=service)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Service updated successfully')
+            messages.success(request, 'Serviço atualizado com sucesso')
             return redirect('manage_services')
     else:
         form = ServiceForm(instance=service)
     return render(request, 'superuser/service_form.html', {
         'form': form,
-        'title': 'Edit Service'
+        'title': 'Editar Serviço'
     })
 
 @login_required
@@ -53,9 +53,9 @@ def delete_service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     if request.method == 'POST':
         service.delete()
-        messages.success(request, 'Service deleted successfully')
+        messages.success(request, 'Serviço deletado com sucesso')
         return redirect('manage_services')
     return render(request, 'superuser/confirm_delete.html', {
         'object': service,
-        'object_name': 'service'
+        'object_name': 'serviço'
     })

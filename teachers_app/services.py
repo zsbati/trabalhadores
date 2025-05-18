@@ -56,5 +56,5 @@ class SalaryCalculationService:
             'task_summaries': task_summaries,
             'session_details': sorted(session_details, key=lambda x: x['date']),
             'total_salary': str(total),
-            'period': f"{start_date.strftime('%B %Y')}"
+            'period': f"{start_date.strftime('%m/%Y')}"
         }

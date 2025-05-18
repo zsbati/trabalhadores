@@ -80,7 +80,9 @@ class WorkSessionManualForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['manual_hours'].label = 'Hours Worked'
+        self.fields['task'].label = 'Tarefa'
+        self.fields['manual_hours'].label = 'Horas Trabalhadas'
+        self.fields['student'].label = 'Cliente'
         self.fields['student'].queryset = Student.objects.all()  
         print("Student widget in WorkSessionManualForm:", type(self.fields['student'].widget))
 
@@ -103,12 +105,14 @@ class WorkSessionClockForm(forms.ModelForm):
         model = WorkSession
         fields = ['task', 'student']
         widgets = {
-            'task': forms.Select(attrs={'class': 'form-control'}),
-            'student': forms.Select(attrs={'class': 'form-control'}),
+            'task': forms.Select(attrs={'class': 'form-control select2', 'data-placeholder': 'Selecione uma tarefa'}),
+            'student': forms.Select(attrs={'class': 'form-control select2', 'data-placeholder': 'Selecione um cliente'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['task'].label = 'Tarefa'
+        self.fields['student'].label = 'Cliente'
         self.fields['student'].queryset = Student.objects.all()
         print("Student widget in WorkSessionClockForm:", type(self.fields['student'].widget))
 
@@ -116,24 +120,34 @@ class WorkSessionTimeRangeForm(forms.ModelForm):
     class Meta:
         model = WorkSession
         fields = ['task', 'start_time', 'end_time', 'student']
+
+    class Meta:
+        model = WorkSession
+        fields = ['task', 'start_time', 'end_time', 'student']
         widgets = {
+            'task': forms.Select(attrs={'class': 'form-control select2', 'data-placeholder': 'Selecione uma tarefa'}),
             'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'student': forms.Select(attrs={'class': 'form-control'}),
+            'student': forms.Select(attrs={'class': 'form-control select2', 'data-placeholder': 'Selecione um cliente'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['task'].label = 'Tarefa'
+        self.fields['start_time'].label = 'Hora Inicial'
+        self.fields['end_time'].label = 'Hora Final'
+        self.fields['student'].label = 'Cliente'
         self.fields['student'].queryset = Student.objects.all()
-        print("Student widget in WorkSessionTimeRangeForm:", type(self.fields['student'].widget))
+
+
 
 class WorkSessionFilterForm(forms.Form):
     """
     Form for filtering recent work sessions.
     """
-    task = forms.ModelChoiceField(queryset=Task.objects.all(), required=False, label="Task")
-    start_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}), label="Start Date")
-    end_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}), label="End Date")
+    task = forms.ModelChoiceField(queryset=Task.objects.all(), required=False, label="Tarefa")
+    start_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}), label="Data Inicial")
+    end_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}), label="Data Final")
 
 
 class AddTeacherForm(forms.Form):
@@ -292,23 +306,23 @@ class SalaryReportForm(forms.Form):
     teacher = forms.ModelChoiceField(
         queryset=Teacher.objects.all(),
         required=True,
-        label="Teacher",
-        widget=forms.Select(attrs={"class": "form-control"})
+        label="Trabalhador",
+        widget=forms.Select(attrs={"class": "form-control", "data-placeholder": "Selecione um trabalhador..."})
     )
     year = forms.IntegerField(
         required=True,
-        label="Year",
+        label="Ano",
         widget=forms.NumberInput(attrs={"class": "form-control"})
     )
     month = forms.ChoiceField(
         choices=[(i, i) for i in range(1, 13)],
         required=True,
-        label="Month",
+        label="Mês",
         widget=forms.Select(attrs={"class": "form-control"})
     )
     notes = forms.CharField(
         required=False,
-        label="Notes",
+        label="Notas",
         widget=forms.Textarea(attrs={"class": "form-control", "rows": 3})
     )
 
@@ -323,11 +337,10 @@ class BillItemForm(forms.ModelForm):
     """Form for adding services to a bill"""
     service = forms.ModelChoiceField(
         queryset=Service.objects.filter(is_active=True),
-        empty_label="Select a service...",
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        help_text="Select the service to add to the bill"
-    )
-    
+        empty_label="Selecione um serviço...",
+        widget=forms.Select(attrs={'class': 'form-select select2', 'data-placeholder': 'Selecione um serviço...'}),
+        help_text="Selecione o serviço para adicionar à fatura"
+    )  
     class Meta:
         model = BillItem
         fields = ['service', 'quantity', 'service_description']

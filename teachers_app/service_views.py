@@ -22,13 +22,13 @@ def add_service(request):
         form = ServiceForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Service added successfully')
+            messages.success(request, 'Serviço adicionado com sucesso')
             return redirect('manage_services')
     else:
         form = ServiceForm()
     return render(request, 'superuser/service_form.html', {
         'form': form,
-        'title': 'Add Service'
+        'title': 'Adicionar Serviço'
     })
 
 @login_required
@@ -46,7 +46,7 @@ def edit_service(request, service_id):
         form = ServiceForm(instance=service)
     return render(request, 'superuser/service_form.html', {
         'form': form,
-        'title': 'Edit Service'
+        'title': 'Editar Serviço'
     })
 
 @login_required
