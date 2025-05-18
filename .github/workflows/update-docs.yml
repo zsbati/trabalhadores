@@ -9,31 +9,83 @@ jobs:
   update-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Get full history
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+
+      - name: Debug Python Environment
+        run: |
+          echo "=== Python Version ==="
+          python --version
+          echo "=== Python Path ==="
+          which python
+          echo "=== Python Location ==="
+          which python3
+          echo "=== Python Environment ==="
+          python -c "import sys; print(sys.executable)"
+          echo "=== Python Modules Path ==="
+          python -c "import sys; print(sys.path)"
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          echo "=== Current Directory ==="
+          pwd
+          echo "=== Directory Contents ==="
+          ls -la
+          
+          echo "=== Installing pip ==="
+          python -m pip install --upgrade pip
+          pip --version
+          
+          echo "=== Installing requirements ==="
+          pip install -r requirements.txt
+          
+          echo "=== Installed Packages ==="
+          pip list
+          
+          echo "=== Django Version ==="
+          python -c "import django; print(django.get_version())"
+
       - name: Generate Documentation
         run: |
-          # Add your documentation generation commands here
+          echo "=== Current Directory ==="
+          pwd
+          echo "=== Directory Contents ==="
+          ls -la
+          
+          echo "=== Python Path ==="
+          python -c "import sys; print(sys.path)"
+          
+          echo "=== Starting documentation generation..."
           python manage.py generate_docs
-      - name: Commit and Push Changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "=== Documentation generation complete ==="
+          
+          echo "=== Directory Contents After Generation ==="
+          ls -la
+          
+          echo "=== Documentation Files ==="
+          find . -name "*.md" -type f -exec ls -l {} \;
+
+      - name: Debug output
+        if: always()
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          echo "=== Workflow Status ==="
+          echo "Status: ${{ job.status }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "SHA: ${{ github.sha }}"
           
-          # Add all documentation files
-          git add docs/ README.md
+          echo "=== Git Status ==="
+          git status
           
-          # Only commit if there are changes
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to commit"
-          else
-            git commit -m "docs: update documentation"
-            git push origin main
-          fi
+          echo "=== Git Remote ==="
+          git remote -v
+          
+          echo "=== Git Config ==="
+          git config --list
