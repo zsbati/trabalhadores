@@ -6,35 +6,39 @@ This project is a web application for managing teachers, their work records, sal
 
 ## Features
 
-- Teacher authentication and dashboard
+- Worker authentication and dashboard
 - Record and view work logs 
-- Generate and view teacher salary reports
-- Manage student records (add, edit, remove)
-- Role-based access (teacher, superuser/admin, inspector)
+- Generate and view worker salary reports with Portuguese date formatting
+- Manage client records (add, edit, remove)
+- Role-based access (worker, superuser/admin, inspector)
+- Full Portuguese localization support with:
+  - Portuguese date format (dd/mm/yyyy)
+  - Europe/Lisbon timezone
+  - Portuguese translations for all user interface elements
 - Superusers can:
-  - Open and delete student and teacher accounts
+  - Open and delete client and worker accounts
   - Create, edit, and remove taxes and services
   - Perform billing
-  - Record work sessions for teachers
-  - Calculate teacher salaries
-  - Generate and update salary reports for teachers
+  - Record work sessions for workers
+  - Calculate worker salaries
+  - Generate and update salary reports for workers
     - Creating a new salary report for a period will replace any existing report for that period
-    - Changes to prices or teacher rates will not affect previously generated bills or salary reports; historical values are preserved for accurate record-keeping
-  - **Bulk Bill All Students:** Generate bills for all students for a selected month in one click, with a preview and options to update or skip existing bills. Prevents double billing and allows reviewing actions before confirming.
-  - **Bulk Salary Reports for All Teachers:** Create or update salary reports for all teachers for a selected month in one click, with a preview and options to update or skip existing reports. Paid reports require explicit confirmation to update. Supervisor can select any month/year.
+    - Changes to prices or worker rates will not affect previously generated bills or salary reports; historical values are preserved for accurate record-keeping
+  - **Bulk Bill All Clients:** Generate bills for all clients for a selected month in one click, with a preview and options to update or skip existing bills. Prevents double billing and allows reviewing actions before confirming.
+  - **Bulk Salary Reports for All Workers:** Create or update salary reports for all workers for a selected month in one click, with a preview and options to update or skip existing reports. Paid reports require explicit confirmation to update. Supervisor can select any month/year.
   - **Flexible Month/Year Selection:** On both bulk billing and salary reporting, select any month and year before previewing or confirming the operation. Default is previous month, but supervisor can generate reports at any time.
   - **Dashboard Shortcuts:** Prominent buttons for both bulk billing and bulk salary reports are available in the left column of the superuser dashboard for quick access.
 - Inspectors can:
-  - View all work sessions (for any teacher)
-  - View all bills (for any student)
-  - View all salary reports (for any teacher)
-  - View all student and teacher records
+  - View all work sessions (for any worker)
+  - View all bills (for any client)
+  - View all salary reports (for any worker)
+  - View all client and worker records
   - Inspectors **cannot** add, edit, or delete any data (read-only access)
-- Teachers can:
+- Workers can:
   - Record work sessions for themselves and view them
-    - (This feature can be deactivated for some schools/tutoring centers)
+    - (This feature can be deactivated for some organizations)
   - View their own salary reports
-- Students can:
+- Clients can:
   - View their own bills
   - Edit their own contact information (telephone, email)
 
@@ -114,6 +118,10 @@ flowchart TD
 - **Backend:** Python (Django)
 - **Frontend:** HTML, CSS, JavaScript (Django templating)
 - **Database:** SQLite (default, can be switched to PostgreSQL/MySQL)
+- **Internationalization:**
+  - Portuguese (pt-pt) language support
+  - Custom date formatting for Portuguese users
+  - Europe/Lisbon timezone configuration
 
 ## Getting Started
 
@@ -126,8 +134,8 @@ flowchart TD
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/teachers.git
-   cd teachers
+   git clone https://github.com/yourusername/workers.git
+   cd workers
    ```
 
 2. Install dependencies:
@@ -156,7 +164,7 @@ flowchart TD
 
 - `templates/` - HTML templates
 - `static/` - Static files (CSS, JS, images)
-- `teachers/` - Main Django app
+- `workers/` - Main Django app
 - `manage.py` - Django project entry point
 - `requirements.txt` - Python dependencies
 
