@@ -38,6 +38,7 @@ This project is a web application for managing teachers, their work records, sal
   - Record work sessions for themselves and view them
     - (This feature can be deactivated for some organizations)
   - View their own salary reports
+  - Export work records to CSV for reporting purposes
 - Clients can:
   - View their own bills
   - Edit their own contact information (telephone, email)
