@@ -45,7 +45,7 @@
                 <!-- Billing Operations -->
                 <div class="card mb-3">
                     <div class="card-header bg-info text-white">
-                        <i class="bi bi-cash"></i> Operações de Faturamento
+                        <i class="bi bi-cash"></i> Faturação
                     </div>
                     <div class="card-body">
                         <div class="list-group">
@@ -97,7 +97,7 @@
                             </a>
                             {% endif %}
                             <a href="{% url 'manage_services' %}" class="list-group-item list-group-item-action">
-                                <i class="bi bi-gear"></i> Gerenciar Serviços
+                                <i class="bi bi-gear"></i> Gerir Serviços
                             </a>
                             {% if user.is_superuser %}
                             <a href="{% url 'charge_student_for_service' %}" class="list-group-item list-group-item-action">

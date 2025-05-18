@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/pt.js"></script>
+<script src="{% static 'js/select2-init.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
     <div class="card">
@@ -11,7 +23,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label for="student" class="form-label">Cliente:</label>
-                        <select name="student" id="student" class="form-select">
+                        <select name="student" id="student" class="form-select" data-placeholder="Selecione um cliente...">
                             <option value="">---------</option>
                             {% for s in students %}
                                 <option value="{{ s.id }}" {% if s.id == selected_student %}selected{% endif %}>{{ s }}</option>
@@ -20,7 +32,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="month" class="form-label">Mês:</label>
-                        <select name="month" id="month" class="form-select">
+                        <select name="month" id="month" class="form-select" data-placeholder="Selecione o mês...">
                             {% for m in months %}
                                 <option value="{{ m.value }}" {% if m.value == selected_month %}selected{% endif %}>{{ m.name }}</option>
                             {% endfor %}
@@ -28,7 +40,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="year" class="form-label">Ano:</label>
-                        <select name="year" id="year" class="form-select">
+                        <select name="year" id="year" class="form-select" data-placeholder="Selecione o ano...">
                             {% for y in years %}
                                 <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>{{ y }}</option>
                             {% endfor %}
@@ -36,7 +48,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="service" class="form-label">Serviço:</label>
-                        <select name="service" id="service" class="form-select">
+                        <select name="service" id="service" class="form-select" data-placeholder="Selecione o serviço...">
                             <option value="">---------</option>
                             {% for svc in services %}
                                 <option value="{{ svc.id }}" {% if svc.id == selected_service %}selected{% endif %}>{{ svc.name }}</option>

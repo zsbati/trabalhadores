@@ -34,10 +34,10 @@
                         <ul class="list-group">
                             {% if user.is_superuser %}
                             <li class="list-group-item">
-                                <a href="{% url 'manage_teachers' %}" class="text-decoration-none">Gerenciar Trabalhadores</a>
+                                <a href="{% url 'manage_teachers' %}" class="text-decoration-none">Gerir Trabalhadores</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{% url 'manage_tasks' %}" class="text-decoration-none">Gerenciar Tarefas</a>
+                                <a href="{% url 'manage_tasks' %}" class="text-decoration-none">Gerir Tarefas</a>
                             </li>
                             {% endif %}
                             {% if user.is_teacher %}
