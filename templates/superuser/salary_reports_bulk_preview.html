@@ -3,12 +3,12 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header bg-primary text-white">
-            <h2 class="mb-0">Bulk Salary Reports Preview for {{ month_name }} {{ year }}</h2>
+            <h2 class="mb-0">Prévia de Relatórios em Lote para {{ month_name }} {{ year }}</h2>
         </div>
         <div class="card-body">
             <form method="get" class="row g-2 mb-3">
                 <div class="col-auto">
-                    <label for="month" class="col-form-label">Month:</label>
+                    <label for="month" class="col-form-label">Mês:</label>
                 </div>
                 <div class="col-auto">
                     <select name="month" id="month" class="form-select">
@@ -18,13 +18,13 @@
                     </select>
                 </div>
                 <div class="col-auto">
-                    <label for="year" class="col-form-label">Year:</label>
+                    <label for="year" class="col-form-label">Ano:</label>
                 </div>
                 <div class="col-auto">
                     <input type="number" name="year" id="year" class="form-control" value="{{ year }}" min="2000" max="2100">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-success">Change</button>
+                    <button type="submit" class="btn btn-outline-success">Alterar</button>
                 </div>
             </form>
             <form method="post">
@@ -32,9 +32,9 @@
                 <table class="table table-bordered table-striped mt-3">
                     <thead class="table-light">
                         <tr>
-                            <th>Teacher</th>
+                            <th>Trabalhador</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,25 +43,25 @@
                             <td>{{ item.teacher }}</td>
                             <td>
                                 {% if not item.already_exists %}
-                                    <span class="badge bg-success">Will be created</span>
+                                    <span class="badge bg-success">Será criado</span>
                                 {% else %}
-                                    <span class="badge bg-warning text-dark">Already exists{% if item.paid %}, Paid{% endif %}</span>
+                                    <span class="badge bg-warning text-dark">Já existe{% if item.paid %}, Pago{% endif %}</span>
                                 {% endif %}
                             </td>
                             <td>
                                 {% if not item.already_exists %}
                                     <input type="hidden" name="action_{{ item.teacher.id }}" value="create">
-                                    <span class="text-success">Will be created</span>
+                                    <span class="text-success">Será criado</span>
                                 {% else %}
                                     {% if item.paid %}
                                         <select name="action_{{ item.teacher.id }}" class="form-select">
-                                            <option value="skip" selected>Skip</option>
-                                            <option value="update">Update (Paid!)</option>
+                                            <option value="skip" selected>Pular</option>
+                                            <option value="update">Atualizar (Pago!)</option>
                                         </select>
                                     {% else %}
                                         <select name="action_{{ item.teacher.id }}" class="form-select">
-                                            <option value="skip" selected>Skip</option>
-                                            <option value="update">Update</option>
+                                            <option value="skip" selected>Pular</option>
+                                            <option value="update">Atualizar</option>
                                         </select>
                                     {% endif %}
                                 {% endif %}
@@ -70,9 +70,9 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-primary mt-3">Confirm Bulk Salary Reports</button>
+                <button type="submit" class="btn btn-primary mt-3">Confirmar Relatórios em Lote</button>
             </form>
-            <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Go Back</a>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Voltar</a>
         </div>
     </div>
 </div>

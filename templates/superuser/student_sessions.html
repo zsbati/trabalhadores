@@ -3,21 +3,21 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>Sessions and Manually Charged Services for {{ student }}</h2>
+            <h2>Sessões e Serviços Cobrados Manualmente para {{ student }}</h2>
         </div>
         <div class="card-body">
-            <h4>Sessions</h4>
+            <h4>Sessões</h4>
             {% if sessions %}
             <div class="table-responsive mb-4">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Task</th>
-                            <th>Teacher</th>
-                            <th>Type</th>
-                            <th>Hours</th>
-                            <th>Notes</th>
+                            <th>Data</th>
+                            <th>Tarefa</th>
+                            <th>Trabalhador</th>
+                            <th>Tipo</th>
+                            <th>Horas</th>
+                            <th>Notas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,21 +45,21 @@
                 </table>
             </div>
             {% else %}
-            <div class="alert alert-info">No sessions found for this student.</div>
+            <div class="alert alert-info">Nenhuma sessão encontrada para este cliente.</div>
             {% endif %}
 
-            <h4>Manually Charged Services</h4>
+            <h4>Serviços Cobrados Manualmente</h4>
             {% if bill_items %}
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Month</th>
-                            <th>Service</th>
-                            <th>Description</th>
-                            <th>Price at Billing</th>
-                            <th>Quantity</th>
-                            <th>Amount</th>
+                            <th>Mês</th>
+                            <th>Serviço</th>
+                            <th>Descrição</th>
+                            <th>Preço na Fatura</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@
                 </table>
             </div>
             {% else %}
-            <div class="alert alert-info">No manually charged services found for this student.</div>
+            <div class="alert alert-info">Nenhum serviço cobrado manualmente encontrado para este cliente.</div>
             {% endif %}
         </div>
     </div>

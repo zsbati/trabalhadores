@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Edit Task</h5>
+            <h5 class="mb-0">Editar Tarefa</h5>
         </div>
         <div class="card-body">
             {% if messages %}
@@ -34,8 +34,8 @@
                         {% endif %}
                     </div>
                 {% endfor %}
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-                <a href="{% url 'manage_tasks' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <a href="{% url 'manage_tasks' %}" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>

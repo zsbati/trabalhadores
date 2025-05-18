@@ -3,14 +3,14 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header bg-primary text-white">
-            <h2 class="mb-0">Billing Results for {{ month }}/{{ year }}</h2>
+            <h2 class="mb-0">Resultados da Faturação para {{ month }}/{{ year }}</h2>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped mt-3">
                 <thead class="table-light">
                     <tr>
-                        <th>Student</th>
-                        <th>Action</th>
+                        <th>Cliente</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,18 +19,18 @@
                         <td>{{ action.student }}</td>
                         <td>
                             {% if action.action == 'created' %}
-                                <span class="badge bg-success">Bill Created</span>
+                                <span class="badge bg-success">Fatura Criada</span>
                             {% elif action.action == 'updated' %}
-                                <span class="badge bg-warning text-dark">Bill Updated</span>
+                                <span class="badge bg-warning text-dark">Fatura Atualizada</span>
                             {% elif action.action == 'skipped' %}
-                                <span class="badge bg-secondary">Skipped</span>
+                                <span class="badge bg-secondary">Pulada</span>
                             {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <a href="{% url 'bill_all_students' %}?month={{ month }}&year={{ year }}" class="btn btn-primary mt-3">Go Back</a>
+            <a href="{% url 'bill_all_students' %}?month={{ month }}&year={{ year }}" class="btn btn-primary mt-3">Voltar</a>
         </div>
     </div>
 </div>

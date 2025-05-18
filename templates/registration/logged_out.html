@@ -3,14 +3,14 @@
 
 
 
-{% block title %}Logged Out{% endblock %}
+{% block title %}Desconectado{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-body text-center">
-        <h2>You have been logged out</h2>
-        <p>Thanks for spending some quality time with our site today.</p>
-        <a href="{% url 'login' %}" class="btn btn-primary">Log in again</a>
+        <h2>Você foi desconectado</h2>
+        <p>Obrigado por usar nosso site hoje.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Entrar novamente</a>
     </div>
 </div>
 {% endblock %}

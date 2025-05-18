@@ -91,7 +91,7 @@ def create_bill(request, student_id):
         bill.total_amount = bill_items_total + work_sessions_total
         bill.save()
 
-        messages.success(request, f'Bill successfully created for {student} for {selected_month.strftime("%B %Y")}!')
+        messages.success(request, f'Fatura criada com sucesso para {student} for {selected_month.strftime("%B %Y")}!')
         return redirect('student_bills', student_id=student_id)
     else:
         form = BillItemForm()
@@ -188,7 +188,7 @@ def create_bill_final(request, student_id):
     bill.total_amount = bill_items_total + work_sessions_total
     bill.save()
 
-    messages.success(request, f'Bill successfully created for {student} for {selected_month.strftime("%B %Y")}!')
+    messages.success(request, f'Fatura criada com sucesso para {student} for {selected_month.strftime("%B %Y")}!')
     return redirect('student_bills', student_id=student_id)
 
 @login_required

@@ -10,13 +10,13 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>
                         {% if teacher %}
-                            Salary Reports for {{ teacher.user.username }}
+                            Relatórios de Salário para {{ teacher.user.username }}
                         {% else %}
-                            All Salary Reports
+                            Todos os Relatórios de Salário
                         {% endif %}
                     </h2>
                     {% if user.is_superuser %}
-                    <a href="{% url 'create_salary_report' %}" class="btn btn-primary">Create New Report</a>
+                    <a href="{% url 'create_salary_report' %}" class="btn btn-primary">Criar Novo Relatório</a>
                     {% endif %}
                 </div>
                 <div class="card-body">
@@ -25,13 +25,13 @@
                             <thead>
                                 <tr>
                                     {% if not teacher %}
-                                        <th>Teacher</th>
+                                        <th>Trabalhador</th>
                                     {% endif %}
-                                    <th>Period</th>
-                                    <th>Total Salary</th>
-                                    <th>Created By</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th>Período</th>
+                                    <th>Salário Total</th>
+                                    <th>Criado Por</th>
+                                    <th>Criado Em</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,7 +46,7 @@
                                     <td>{{ item.report.created_at|date:"Y-m-d H:i" }}</td>
                                     <td>
                                         <a href="{% url 'teacher_view_salary_report' item.report.teacher.id item.report.start_date|date:'Y' item.report.start_date|date:'n' %}" 
-                                           class="btn btn-sm btn-info">View</a>
+                                           class="btn btn-sm btn-info">Ver</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -54,7 +54,7 @@
                         </table>
                     {% else %}
                         <div class="alert alert-info">
-                            No salary reports found.
+                            Nenhum relatório de salário encontrado.
                         </div>
                     {% endif %}
                 </div>

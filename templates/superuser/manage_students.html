@@ -17,7 +17,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Add New Student</h5>
+                    <h5 class="mb-0">Adicionar Novo Cliente</h5>
                 </div>
                 <div class="card-body">
                     <form method="post">
@@ -38,7 +38,7 @@
                             {% endif %}
                         </div>
                         {% endfor %}
-                        <button type="submit" class="btn btn-primary">Add Student</button>
+                        <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
                     </form>
                 </div>
             </div>
@@ -48,17 +48,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Current Students</h5>
+                    <h5 class="mb-0">Clientes Ativos</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>Usuário</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Actions</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,17 +70,17 @@
                                 <td>
                                     {% if user.is_superuser %}
                                     <a href="{% url 'edit_student' student.id %}"
-                                       class="btn btn-primary btn-sm">Edit</a>
+                                       class="btn btn-primary btn-sm">Editar</a>
                                     <a href="{% url 'change_student_password' student.id %}"
-                                       class="btn btn-sm btn-info me-2">Change Password</a>
-                                    <a href="{% url 'remove_student' student.id %}" class="btn btn-danger btn-sm">Deactivate</a>
+                                       class="btn btn-sm btn-info me-2">Alterar Senha</a>
+                                    <a href="{% url 'remove_student' student.id %}" class="btn btn-danger btn-sm">Desativar</a>
                                     {% endif %}
-                                    <a href="{% url 'student_bill_items' student.id %}" class="btn btn-sm btn-secondary ms-2">Services/Sessions</a>
+                                    <a href="{% url 'student_bill_items' student.id %}" class="btn btn-sm btn-secondary ms-2">Serviços/Sessões</a>
                                 </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="6" class="text-center">No active students found.</td>
+                                <td colspan="6" class="text-center">Nenhum cliente ativo encontrado.</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -96,7 +96,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Deactivated Students</h5>
+                    <h5 class="mb-0">Clientes Desativados</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

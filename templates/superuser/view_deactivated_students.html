@@ -7,8 +7,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Deactivated Students</h5>
-                    <a href="{% url 'manage_students' %}" class="btn btn-secondary btn-sm">Back to Active Students</a>
+                    <h5 class="mb-0">Clientes Desativados</h5>
+                    <a href="{% url 'manage_students' %}" class="btn btn-secondary btn-sm">Voltar para Clientes Ativos</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -28,14 +28,14 @@
                                     <td>{{ student.user.email }}</td>
                                     <td>{{ student.phone }}</td>
                                     <td>
-                                        <a href="{% url 'edit_student' student.id %}" class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{% url 'reactivate_student' student.id %}" class="btn btn-success btn-sm">Reactivate</a>
-                                        <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{% url 'edit_student' student.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                        <a href="{% url 'reactivate_student' student.id %}" class="btn btn-success btn-sm">Reativar</a>
+                                        <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Excluir</a>
                                     </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="6" class="text-center">No deactivated students found.</td>
+                                    <td colspan="6" class="text-center">Nenhum cliente desativado encontrado.</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

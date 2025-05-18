@@ -7,27 +7,27 @@
         <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-header">
-                    <h2>Salary Report - {{ teacher.user.username }}</h2>
+                    <h2>Relatório de Salário - {{ teacher.user.username }}</h2>
                     <h5 class="text-muted">{{ report_data.period }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <h4>Report Details</h4>
-                            <p><strong>Period:</strong> {{ report.start_date|date:"F Y" }}</p>
-                            <p><strong>Total Salary:</strong> €{{ report_data.total_salary|floatformat:2 }}</p>
-                            <p><strong>Created By:</strong> {{ report.created_by.username }}</p>
-                            <p><strong>Created At:</strong> {{ report.created_at|date:"Y-m-d H:i" }}</p>
+                            <h4>Detalhes do Relatório</h4>
+                            <p><strong>Período:</strong> {{ report.start_date|date:"F Y" }}</p>
+                            <p><strong>Salário Total:</strong> €{{ report_data.total_salary|floatformat:2 }}</p>
+                            <p><strong>Criado Por:</strong> {{ report.created_by.username }}</p>
+                            <p><strong>Criado Em:</strong> {{ report.created_at|date:"d/m/Y H:i" }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h4>Report Overview</h4>
-                            <p><strong>Total Hours:</strong> {{ report_data.total_hours|floatformat:2 }}</p>
-                            <p><strong>Hourly Rate:</strong> €{{ report_data.hourly_rate|floatformat:2 }}/hr</p>
+                            <h4>Visão Geral</h4>
+                            <p><strong>Horas em Total:</strong> {{ report_data.total_hours|floatformat:2 }}</p>
+                            <p><strong>Taxa Horária:</strong> €{{ report_data.hourly_rate|floatformat:2 }}/hr</p>
                         </div>
                     </div>
 
                     <!-- Task Summaries -->
-                    <h4>Summary by Task Type</h4>
+                    <h4>Resumo por Tipo de Tarefa</h4>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -46,38 +46,38 @@
                     </table>
 
                     <!-- Detailed Sessions -->
-                    <h4 class="mt-4">Detailed Work Sessions</h4>
+                    <h4 class="mt-4">Sessões de Trabalho Detalhadas</h4>
                     {% if request.user.is_superuser %}
                     <table class="table table-hover mb-0 align-middle">
                         <thead class="table-light">
                         <tr>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Total Time (Hours)</th>
-                            <th>Task</th>
-                            <th>Hourly Rate</th>
-                            <th>Total Amount</th>
-                            <th>Student</th>
-                            <th>Actions</th>
+                            <th>Data</th>
+                            <th>Hora de Início</th>
+                            <th>Hora de Fim</th>
+                            <th>Tempo Total (Horas)</th>
+                            <th>Tarefa</th>
+                            <th>Taxa Horária</th>
+                            <th>Valor Total</th>
+                            <th>Cliente</th>
+                            <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for session in work_sessions %}
                         <tr>
-                            <td>{{ session.created_at|date:"Y-m-d" }}</td>
+                            <td>{{ session.created_at|date:"d/m/Y" }}</td>
                             <td>{% if session.start_time %}{{ session.start_time|date:"Y-m-d H:i:s" }}{% else %}N/A{% endif %}</td>
                             <td>{% if session.end_time %}{{ session.end_time|date:"Y-m-d H:i:s" }}{% else %}N/A{% endif %}</td>
                             <td>{% if session.calculated_hours %}{{ session.calculated_hours|floatformat:2 }}{% else %}N/A{% endif %}</td>
                             <td>{{ session.task.name }}</td>
                             <td>€{{ session.hourly_rate|floatformat:2 }}/hr</td>
                             <td>€{{ session.total_amount }}</td>
-                            <td>{% if session.student %}{{ session.student }}{% else %}<em>No student assigned</em>{% endif %}</td>
+                            <td>{% if session.student %}{{ session.student }}{% else %}<em>Nenhum aluno atribuído</em>{% endif %}</td>
                             <td>
-                                <a href="{% url 'edit_work_session' session.id %}" class="btn btn-sm btn-primary">Edit</a>
-                                <form method="post" action="{% url 'delete_work_session' session.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this work session?');">
+                                <a href="{% url 'edit_work_session' session.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                <form method="post" action="{% url 'delete_work_session' session.id %}" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta sessão de trabalho?');">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                                 </form>
                             </td>
                         </tr>
@@ -88,33 +88,33 @@
                     <table class="table table-hover mb-0 align-middle">
                         <thead class="table-light">
                         <tr>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Total Time (Hours)</th>
-                            <th>Task</th>
-                            <th>Hourly Rate</th>
-                            <th>Total Amount</th>
-                            <th>Student</th>
+                            <th>Data</th>
+                            <th>Hora de Início</th>
+                            <th>Hora de Fim</th>
+                            <th>Tempo Total (Horas)</th>
+                            <th>Tarefa</th>
+                            <th>Taxa Horária</th>
+                            <th>Valor Total</th>
+                            <th>Cliente</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for session in work_sessions %}
                         <tr>
-                            <td>{{ session.created_at|date:"Y-m-d" }}</td>
+                            <td>{{ session.created_at|date:"d/m/Y" }}</td>
                             <td>{% if session.start_time %}{{ session.start_time|date:"Y-m-d H:i:s" }}{% else %}N/A{% endif %}</td>
                             <td>{% if session.end_time %}{{ session.end_time|date:"Y-m-d H:i:s" }}{% else %}N/A{% endif %}</td>
                             <td>{% if session.calculated_hours %}{{ session.calculated_hours|floatformat:2 }}{% else %}N/A{% endif %}</td>
                             <td>{{ session.task.name }}</td>
                             <td>€{{ session.hourly_rate|floatformat:2 }}/hr</td>
                             <td>€{{ session.total_amount }}</td>
-                            <td>{% if session.student %}{{ session.student }}{% else %}<em>No student assigned</em>{% endif %}</td>
+                            <td>{% if session.student %}{{ session.student }}{% else %}<em>Nenhum cliente atribuído</em>{% endif %}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                     {% else %}
-                    <div class="p-3 text-center">No work sessions found for this period.</div>
+                    <div class="p-3 text-center">Nenhuma sessão de trabalho encontrada para este período.</div>
                     {% endif %}
                 </div>
                 <div class="card-footer text-muted">

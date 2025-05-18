@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Work Sessions{% endblock %}
+{% block title %}Sessões de Trabalho{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -9,21 +9,21 @@
         <div class="col-md-12">
             <div class="card mt-3">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Work Sessions</h4>
+                    <h4 class="mb-0">Sessões de Trabalho</h4>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped mb-0">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Task</th>
-                                <th>Hours</th>
-                                <th>Rate</th>
+                                <th>Data</th>
+                                <th>Tarefa</th>
+                                <th>Horas</th>
+                                <th>Taxa</th>
                                 <th>Total</th>
-                                <th>Entry Type</th>
-                                <th>Teacher</th>
-                                <th>Student</th>
-                                <th>Actions</th>
+                                <th>Tipo de Entrada</th>
+                                <th>Trabalhador</th>
+                                <th>Cliente</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,18 +36,18 @@
                                 <td>€{{ session.total_amount|floatformat:2 }}</td>
                                 <td>{{ session.entry_type }}</td>
                                 <td>{{ session.teacher.user.username }}</td>
-                                <td>{% if session.student %}{{ session.student }}{% else %}<em>No student assigned</em>{% endif %}</td>
+                                <td>{% if session.student %}{{ session.student }}{% else %}<em>Nenhum cliente atribuído</em>{% endif %}</td>
                                 <td>
-                                    <a href="{% url 'edit_work_session' session.id %}" class="btn btn-sm btn-primary">Edit</a>
-                                    <form method="post" action="{% url 'delete_work_session' session.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this work session?');">
+                                    <a href="{% url 'edit_work_session' session.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                    <form method="post" action="{% url 'delete_work_session' session.id %}" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta sessão de trabalho?');">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                                     </form>
                                 </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="9">No work sessions found.</td>
+                                <td colspan="9">Nenhuma sessão de trabalho encontrada.</td>
                             </tr>
                             {% endfor %}
                         </tbody>

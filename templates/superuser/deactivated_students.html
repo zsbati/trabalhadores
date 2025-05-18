@@ -7,7 +7,7 @@
         <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Deactivated Students</h5>
+                    <h5 class="mb-0">Clientes Desativados</h5>
                 </div>
                 <div class="card-body">
                     {% if messages %}
@@ -34,21 +34,21 @@
                                     <td>{{ student.phone }}</td>
                                     <td>
                                         {% if not student.user.is_active %}
-                                            <span class="badge bg-danger">Inactive</span>
+                                            <span class="badge bg-danger">Inativo</span>
                                         {% else %}
-                                            <span class="badge bg-success">Active</span>
+                                            <span class="badge bg-success">Ativo</span>
                                         {% endif %}
                                     </td>
                                     <td>
                                         <form method="post" action="{% url 'reactivate_student' student.id %}" style="display:inline;">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-success btn-sm">Reactivate</button>
+                                            <button type="submit" class="btn btn-success btn-sm">Reativar</button>
                                         </form>
                                     </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="5" class="text-center">No deactivated students found.</td>
+                                    <td colspan="5" class="text-center">Nenhum cliente desativado encontrado.</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

@@ -6,17 +6,17 @@
     <div class="col">
       <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white d-flex align-items-center">
-          <h4 class="mb-0 flex-grow-1">My Bills for {{ student }}</h4>
+          <h4 class="mb-0 flex-grow-1">Minhas Faturas para {{ student }}</h4>
         </div>
         <div class="card-body p-0">
           <div class="table-responsive">
             <table class="table table-hover mb-0 align-middle">
               <thead class="table-light">
                 <tr>
-                  <th>Month</th>
-                  <th>Total Amount</th>
+                  <th>Mês</th>
+                  <th>Valor Total</th>
                   <th>Status</th>
-                  <th>Actions</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -24,18 +24,18 @@
                 <tr>
                   <td>{{ bill.month|date:"F Y" }}</td>
                   <td>€{{ bill.total_amount }}</td>
-                  <td><span class="badge {% if bill.is_paid %}bg-success{% else %}bg-warning text-dark{% endif %}">{% if bill.is_paid %}Paid{% else %}Unpaid{% endif %}</span></td>
+                  <td><span class="badge {% if bill.is_paid %}bg-success{% else %}bg-warning text-dark{% endif %}">{% if bill.is_paid %}Pago{% else %}Não Pago{% endif %}</span></td>
                   <td>
-                    <a href="{% url 'bill_detail' bill.id %}" class="btn btn-outline-primary btn-sm">View</a>
+                    <a href="{% url 'bill_detail' bill.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
                     {% if bill.is_paid %}
-                    <span class="text-muted">(Paid)</span>
+                    <span class="text-muted">(Pago)</span>
                     {% else %}
-                    <a href="{% url 'create_bill' student_id=student.id %}" class="btn btn-sm btn-primary">Update</a>
+                    <a href="{% url 'create_bill' student_id=student.id %}" class="btn btn-sm btn-primary">Atualizar</a>
                     {% endif %}
                   </td>
                 </tr>
                 {% empty %}
-                <tr><td colspan="4" class="text-center">No bills found.</td></tr>
+                <tr><td colspan="4" class="text-center">Nenhuma fatura encontrada.</td></tr>
                 {% endfor %}
               </tbody>
             </table>

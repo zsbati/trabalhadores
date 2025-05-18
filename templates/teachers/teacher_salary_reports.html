@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}My Salary Reports{% endblock %}
+{% block title %}Meus Relatórios de Salário{% endblock %}
 {% block content %}
 <div class="container mt-4">
     <div class="card shadow-sm border-0 mb-4">
@@ -10,12 +10,12 @@
             <table class="table table-hover mb-0 align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th>Period</th>
-                        <th>Total Hours</th>
-                        <th>Total Salary</th>
-                        <th>Created At</th>
+                        <th>Período</th>
+                        <th>Horas em Total</th>
+                        <th>Salário Total</th>
+                        <th>Criado Em</th>
                         {% if request.user.is_superuser %}
-                        <th>Actions</th>
+                        <th>Ações</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -28,19 +28,19 @@
                         <td>{{ item.report.created_at|date:"Y-m-d" }}</td>
                         <td>
                             <a href="{% url 'teacher_view_salary_report' teacher_id=request.user.teacher.id year=item.report.start_date|date:'Y' month=item.report.start_date|date:'n' %}" 
-                               class="btn btn-sm btn-info">View</a>
+                               class="btn btn-sm btn-info">Ver</a>
                         </td>
                         {% if request.user.is_superuser %}
                         <td>
-                            <form method="post" action="{% url 'delete_salary_report' item.report.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this salary report?');">
+                            <form method="post" action="{% url 'delete_salary_report' item.report.id %}" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este relatório de salário?');">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                             </form>
                         </td>
                         {% endif %}
                     </tr>
                     {% empty %}
-                    <tr><td colspan="5">No salary reports found.</td></tr>
+                    <tr><td colspan="5">Nenhum relatório de salário encontrado.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Student Dashboard{% endblock %}
+{% block title %}Painel do Cliente{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h3>Welcome, {{ user.username }}</h3>
+            <h3>Bem-vindo, {{ user.username }}</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Your Profile</h5>
+                            <h5 class="card-title">Seu Perfil</h5>
                             <p class="card-text">
                                 <strong>Email:</strong> {{ user.email }}<br>
-                                <strong>Phone:</strong> {{ user.student.phone|default:"Not set" }}<br>
-                                <strong>Status:</strong> {% if user.student.is_active %}Active{% else %}Inactive{% endif %}
+                                <strong>Telefone:</strong> {{ user.student.phone|default:"Não definido" }}<br>
+                                <strong>Status:</strong> {% if user.student.is_active %}Ativo{% else %}Inativo{% endif %}
                             </p>
                         </div>
                     </div>
@@ -25,16 +25,16 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Quick Actions</h5>
+                            <h5 class="card-title">Ações Rápidas</h5>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <a href="{% url 'edit_own_profile' %}" class="text-decoration-none">Edit Profile</a>
+                                    <a href="{% url 'edit_own_profile' %}" class="text-decoration-none">Editar Perfil</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{% url 'change_password' %}" class="text-decoration-none">Change Password</a>
+                                    <a href="{% url 'change_password' %}" class="text-decoration-none">Alterar Senha</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{% url 'student_bills' student_id=user.student.id %}" class="text-decoration-none">View Bills</a>
+                                    <a href="{% url 'student_bills' student_id=user.student.id %}" class="text-decoration-none">Ver Faturas</a>
                                 </li>
                             </ul>
                         </div>

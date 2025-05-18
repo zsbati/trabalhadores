@@ -7,18 +7,18 @@
         <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-header">
-                    <h2>My Salary Reports</h2>
+                    <h2>Meus Relatórios de Salário</h2>
                 </div>
                 <div class="card-body">
                     {% if reports %}
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Period</th>
-                                    <th>Total Salary</th>
-                                    <th>Created By</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th>Período</th>
+                                    <th>Salário Total</th>
+                                    <th>Criado Por</th>
+                                    <th>Criado Em</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,7 +30,7 @@
                                     <td>{{ item.report.created_at|date:"Y-m-d H:i" }}</td>
                                     <td>
                                         <a href="{% url 'teacher_view_salary_report' teacher.id item.report.start_date|date:'Y' item.report.start_date|date:'n' %}" 
-                                           class="btn btn-sm btn-info">View</a>
+                                           class="btn btn-sm btn-info">Ver</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -38,7 +38,7 @@
                         </table>
                     {% else %}
                         <div class="alert alert-info">
-                            No salary reports found.
+                            Nenhum relatório de salário encontrado.
                         </div>
                     {% endif %}
                 </div>

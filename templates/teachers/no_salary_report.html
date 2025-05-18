@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}No Salary Report{% endblock %}
+{% block title %}Nenhum Relatório de Salário{% endblock %}
 {% block content %}
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -9,8 +9,8 @@
                     <h4 class="mb-0">No Salary Report</h4>
                 </div>
                 <div class="card-body">
-                    <p class="mb-3">No salary report was found for {{ month }}/{{ year }}.</p>
-                    <a href="{% url 'teacher_salary_reports' %}" class="btn btn-primary mt-2">Back to My Salary Reports</a>
+                    <p class="mb-3">Nenhum relatório de salário encontrado para {{ month }}/{{ year }}.</p>
+                    <a href="{% url 'teacher_salary_reports' %}" class="btn btn-primary mt-2">Voltar para Meus Relatórios de Salário</a>
                 </div>
             </div>
         </div>

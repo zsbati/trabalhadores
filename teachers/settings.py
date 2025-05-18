@@ -91,7 +91,7 @@ LOGIN_URL = '/login/'  # Where to redirect if user is not logged in
 
 # Internationalization
 LANGUAGE_CODE = 'pt-pt'  # Changed to Portuguese (Portugal)
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Lisbon'
 USE_I18N = True
 USE_TZ = True
 

@@ -7,7 +7,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Edit Student: {{ student.user.username }}</h5>
+                    <h5 class="mb-0">Editar Cliente: {{ student.user.username }}</h5>
                 </div>
                 <div class="card-body">
                     {% if messages %}
@@ -45,8 +45,8 @@
                                    value="{{ form.email.value|default:student.user.email }}">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="{% url 'manage_students' %}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <a href="{% url 'manage_students' %}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                         </div>
                     </form>
                 </div>

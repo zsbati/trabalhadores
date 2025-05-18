@@ -3,15 +3,15 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h3>Student Billing Management</h3>
+            <h3>Ver Cobranças</h3>
         </div>
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="student_id" class="form-label">Select Student</label>
+                    <label for="student_id" class="form-label">Selecionar Cliente</label>
                     <select name="student_id" id="student_id" class="form-select">
-                        <option value="">Select a student...</option>
+                        <option value="">Selecione um cliente...</option>
                         {% for student in students %}
                         <option value="{{ student.id }}">
                             {{ student }} - {{ student.user.email }}
@@ -20,8 +20,8 @@
                     </select>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">View Student Bills</button>
-                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+                    <button type="submit" class="btn btn-primary">Ver Faturas do Cliente</button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Voltar</a>
                 </div>
             </form>
         </div>

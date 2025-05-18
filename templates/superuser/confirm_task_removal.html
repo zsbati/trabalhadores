@@ -11,11 +11,11 @@
             <h3 class="mb-0">Confirm Task Removal</h3>
         </div>
         <div class="card-body">
-            <p>Are you sure you want to remove the task "{{ task.title }}"?</p>
+            <p>Tem certeza que deseja remover a tarefa "{{ task.title }}"?</p>
             <form method="post">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Yes, remove task</button>
-                <a href="{% url 'manage_tasks' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-danger">Sim, remover tarefa</button>
+                <a href="{% url 'manage_tasks' %}" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>
