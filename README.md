@@ -40,6 +40,7 @@ This project is a web application for managing teachers, their work records, sal
   - View their own salary reports
   - Export work records to CSV for reporting purposes
   - Generate PDF reports of their work history
+    - Export work history to Excel for detailed analysis
 - Clients can:
   - View their own bills
   - Edit their own contact information (telephone, email)
