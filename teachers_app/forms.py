@@ -66,6 +66,12 @@ class TaskForm(forms.ModelForm):
             'hourly_rate': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
         }
+        labels = {
+            'name': 'Nome',
+            'description': 'Descrição',
+            'hourly_rate': 'Taxa Horária',
+            'price': 'Preço'
+        }
 
 
 class WorkSessionManualForm(forms.ModelForm):
