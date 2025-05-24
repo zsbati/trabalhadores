@@ -160,25 +160,25 @@ class AddTeacherForm(forms.Form):
     username = forms.CharField(
         max_length=150,
         required=True,
-        label="Username",
+        label="Nome de Usuário",
         widget=forms.TextInput(attrs={"class": "form-control"})
     )
     email = forms.EmailField(
         required=True,
-        label="Email",
+        label="E-mail",
         widget=forms.EmailInput(attrs={"class": "form-control"})
     )
     password = forms.CharField(
         required=True,
-        label="Password",
+        label="Senha",
         widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
     subjects = forms.CharField(
         max_length=200,
         required=False,
-        label="Subjects",
+        label="Especialidades",
         widget=forms.TextInput(attrs={"class": "form-control"}),
-        help_text="Optional: List of subjects taught"
+        help_text="Opcional: Lista de especialidades"
     )
 
     def clean(self):
