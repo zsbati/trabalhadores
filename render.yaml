@@ -2,10 +2,7 @@ services:
   - type: web
     name: trabalhadores
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate
+    buildCommand: chmod a+x .render-build.sh && ./.render-build.sh
     startCommand: gunicorn teachers.wsgi
     envVars:
       - key: PYTHON_VERSION
@@ -22,6 +19,13 @@ services:
         value: "https://trabalhadores.onrender.com"
       - key: DISABLE_COLLECTSTATIC
         value: "1"
+      # Superuser configuration
+      - key: SUPERUSER_USERNAME
+        value: "admin"
+      - key: SUPERUSER_EMAIL
+        value: "admin@example.com"
+      - key: SUPERUSER_PASSWORD
+        generateValue: true
     plan: free
     autoDeploy: true
     numInstances: 1
