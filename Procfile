@@ -1,1 +1,1 @@
-web: gunicorn teachers.wsgi --log-file -
+web: gunicorn teachers.wsgi
