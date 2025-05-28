@@ -4,10 +4,15 @@ Django settings for teachers project.
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+# Temporarily disabled dotenv loading
+# from dotenv import load_dotenv
+# load_dotenv()
 
-# Load environment variables from .env file
-load_dotenv()
+# Set default values
+import os
+os.environ.setdefault('DEBUG', 'True')
+os.environ.setdefault('SECRET_KEY', 'temporary-secret-key-for-development')
+os.environ.setdefault('ALLOWED_HOSTS', 'localhost,127.0.0.1')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
