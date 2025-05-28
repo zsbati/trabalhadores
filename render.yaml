@@ -17,8 +17,9 @@ services:
         value: "trabalhadores.onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://trabalhadores.onrender.com"
-      - key: DISABLE_COLLECTSTATIC
-        value: "1"
+      # Database configuration
+      - key: DATABASE_URL
+        value: ""
       # Superuser configuration
       - key: SUPERUSER_USERNAME
         value: "admin"
