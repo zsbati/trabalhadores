@@ -33,6 +33,9 @@ if not DEBUG:
     # You might want to add your domain here or set it via environment variable
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if os.getenv('CSRF_TRUSTED_ORIGINS') else []
 
+# Custom user model
+AUTH_USER_MODEL = 'teachers_app.CustomUser'
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'teachers_app',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +86,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Create database directory if it doesn't exist
+os.makedirs(os.path.dirname(DATABASES['default']['NAME']), exist_ok=True)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
