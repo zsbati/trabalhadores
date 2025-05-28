@@ -76,21 +76,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'teachers.wsgi.application'
 
 # Database
-import dj_database_url
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# If DATABASE_URL is set, use PostgreSQL
-if os.getenv('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True
-    )
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
