@@ -435,7 +435,7 @@ def charge_student_for_service(request):
         )
         bill.total_amount = bill.items.aggregate(total=Sum('amount'))['total'] or 0
         bill.save()
-        messages.success(request, f'Adicionado {service.name} ao {student} para {selected_month.strftime("%B")} {selected_year}.')
+        messages.success(request, f'Adicionado {service.name} ao {student} para {period.strftime("%B")} {selected_year}.')
         return redirect('charge_student_for_service')
 
     context = {

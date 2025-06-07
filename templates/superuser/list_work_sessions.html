@@ -33,7 +33,7 @@
                                 <td>{{ session.task.name }}</td>
                                 <td>{{ session.calculated_hours|floatformat:2 }}</td>
                                 <td>€{{ session.task.hourly_rate|floatformat:2 }}/hr</td>
-                                <td>€{{ session.total_amount|floatformat:2 }}</td>
+                                <td>€{{ session.teacher_payment_amount|floatformat:2 }}</td>
                                 <td>{{ session.entry_type }}</td>
                                 <td>{{ session.teacher.user.username }}</td>
                                 <td>{% if session.student %}{{ session.student }}{% else %}<em>Nenhum cliente atribuído</em>{% endif %}</td>
